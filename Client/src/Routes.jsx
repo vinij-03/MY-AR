@@ -2,13 +2,17 @@
 import RegisterLogin from './RegisterLogin'
 import { useContext } from 'react'
 import { UserContext } from './UserContext'
-
+import AppPage from './AppPage'
 
 
 function Routes() {
     const { username } = useContext(UserContext)
     if (username) {
-        return ("logged in ")
+        return (
+            <>
+                <AppPage />
+            </>
+        )
     }
     return (
         <>
