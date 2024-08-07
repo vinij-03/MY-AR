@@ -33,8 +33,7 @@ const XrModelHit = () => {
 
     return (
         <>
-            <OrbitControls enablePan={isPresenting}
-                enableZoom={isPresenting}
+            <OrbitControls 
                 enableRotate={true}
                 maxPolarAngle={Math.PI / 2}
                 minPolarAngle={Math.PI / 2} />

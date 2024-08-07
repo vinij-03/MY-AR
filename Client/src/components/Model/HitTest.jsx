@@ -12,7 +12,7 @@ const HitTest = () => {
                 }}
             />
             <div className="w-screen h-screen">
-                <Canvas>
+                <Canvas style={{ backgroundColor: '#31363F'}}>
                     <XR>
                         <XrModelHit />
                     </XR>

@@ -1,8 +1,8 @@
 // import React from 'react'
-import RegisterLogin from './RegisterLogin'
+import RegisterLogin from './Pages/RegisterLogin'
 import { useContext } from 'react'
 import { UserContext } from './UserContext'
-import AppPage from './AppPage'
+import AppPage from './Pages/ARComp'
 
 
 function Routes() {
