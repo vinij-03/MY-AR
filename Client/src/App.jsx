@@ -1,6 +1,7 @@
 import Routes from './Routes';
 import axios from 'axios';
 import { UserContextProvider } from './UserContext'
+import AppPage from './Pages/ARComp';
 
 
 function App() {
@@ -11,9 +12,10 @@ function App() {
 
   return (
     <>
-      <UserContextProvider>
+      {/* <UserContextProvider>
         <Routes />
-      </UserContextProvider>
+      </UserContextProvider> */}
+      <AppPage />
     </>
   )
 }
