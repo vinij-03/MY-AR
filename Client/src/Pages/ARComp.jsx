@@ -1,5 +1,6 @@
 import React from 'react'
 import HitTest from '../components/Model/HitTest'
+// import Card from '../components/Card'
 
 function AppPage() {
   return (

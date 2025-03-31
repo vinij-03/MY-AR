@@ -35,8 +35,10 @@ const XrModelHit = () => {
         <>
             <OrbitControls 
                 enableRotate={true}
+                enableZoom={false}
                 maxPolarAngle={Math.PI / 2}
-                minPolarAngle={Math.PI / 2} />
+                // minPolarAngle={Math.PI / 2} 
+            />
             <ambientLight />
             {isPresenting &&
                 models.map(({ position, id }) => {
@@ -51,7 +53,7 @@ const XrModelHit = () => {
                 </Interactive>
             )}
 
-            {!isPresenting && <Model />}
+            {!isPresenting && <Model position={[0,-0.5,0]}  />}
         </>
     );
 };

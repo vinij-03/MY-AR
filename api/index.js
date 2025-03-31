@@ -13,6 +13,7 @@ dotenv.config();
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MonogUrl);
+    console.log("DB connected");
   } catch (err) {
     console.error(err.message);
     process.exit(1);
@@ -47,7 +48,7 @@ app.get("/profile", (req, res) => {
       res.json(userData);
     });
   } else {
-    res.status(401).json("Unauthorized");
+    res.status(401).json("Unauthorized Check");
   }
 });
 
