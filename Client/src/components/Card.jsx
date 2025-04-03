@@ -1,30 +1,66 @@
-import React from 'react'
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import Model from "./Model/Model";
 
-function card({ image, title, onClick }) {
-  return (
-      <div className="max-w-sm bg-white shadow-lg rounded-2xl overflow-hidden p-4 flex flex-col items-center">
-          {/* Clickable Image */}
-          <img
-              src={image}
-              alt={title}
-              className="w-full h-48 object-cover rounded-lg cursor-pointer"
-              onClick={onClick}
-          />
+// Thumbnail component renders a small 3D view of the model.
+const Thumbnail = ({ modelUrl }) => {
+    return (
+        <Canvas
+            style={{ width: "100px", height: "100px" }}
+            orthographic
+            camera={{ zoom: 50, position: [0, 0, 100] }}
+        >
+            <ambientLight intensity={0.5} />
+            <directionalLight intensity={0.5} position={[0, 0, 5]} />
+            <Model position={[0, -0.5, 0]} modelUrl={modelUrl} />
+        </Canvas>
+    );
+};
 
-          {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-800 mt-4 text-center">{title}</h3>
+const models = [
+    { name: "House", url: "/house.glb" },
+    { name: "forest", url: "/forest_house.glb" },
+    // { name: 'Tree', url: '/tree.glb' },
+];
 
-          {/* Button */}
-          <div className="w-full flex justify-end mt-4">
-              <button
-                  onClick={onClick}
-                  className="px-4 py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition"
-              >
-                  View
-              </button>
-          </div>
-      </div>
-  )
+function Card({ onModelSelect }) {
+    return (
+        <div
+            style={{
+                display: "flex",
+                gap: "1rem",
+                padding: "1rem",
+                overflowX: "auto",
+                background: "#f5f5f5",
+            }}
+        >
+            {models.map((model, index) => (
+                <div
+                    key={index}
+                    onClick={() => onModelSelect(model.url)}
+                    style={{
+                        border: "1px solid #ccc",
+                        borderRadius: "8px",
+                        padding: "1rem",
+                        cursor: "pointer",
+                        textAlign: "center",
+                        width: "120px",
+                    }}
+                >
+                    <div
+                        style={{
+                            width: "100px",
+                            height: "100px",
+                            margin: "0 auto 0.5rem",
+                        }}
+                    >
+                        <Thumbnail modelUrl={model.url} />
+                    </div>
+                    <div>{model.name}</div>
+                </div>
+            ))}
+        </div>
+    );
 }
 
-export default card
+export default Card;

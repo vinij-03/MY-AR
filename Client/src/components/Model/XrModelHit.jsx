@@ -4,7 +4,7 @@ import { Interactive, useHitTest, useXR } from "@react-three/xr";
 import { useRef, useState } from "react";
 import Model from "./Model";
 
-const XrModelHit = () => {
+const XrModelHit = ({ modelUrl }) => {
     const reticleRef = useRef();
     const [models, setModels] = useState([]);
 
@@ -26,24 +26,24 @@ const XrModelHit = () => {
     });
 
     const placeModel = (e) => {
+        if (!modelUrl) return; // Only place model if a URL is provided
         let position = e.intersection.object.position.clone();
         let id = Date.now();
-        setModels([{position, id }]);
+        setModels([{ position, id }]);
     };
 
     return (
         <>
-            <OrbitControls 
+            <OrbitControls
                 enableRotate={true}
                 enableZoom={false}
                 maxPolarAngle={Math.PI / 2}
-                // minPolarAngle={Math.PI / 2} 
             />
             <ambientLight />
             {isPresenting &&
-                models.map(({ position, id }) => {
-                    return <Model key={id} position={position} />;
-                })}
+                models.map(({ position, id }) => (
+                    <Model key={id} position={position} modelUrl={modelUrl} />
+                ))}
             {isPresenting && (
                 <Interactive onSelect={placeModel}>
                     <mesh ref={reticleRef} rotation-x={-Math.PI / 2}>
@@ -52,8 +52,7 @@ const XrModelHit = () => {
                     </mesh>
                 </Interactive>
             )}
-
-            {!isPresenting && <Model position={[0,-0.5,0]}  />}
+            {!isPresenting && modelUrl && <Model position={[0, -0.5, 0]} modelUrl={modelUrl} />}
         </>
     );
 };
