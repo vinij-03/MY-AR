@@ -102,6 +102,16 @@ app.post("/register", async (req, res) => {
   }
 });
 
+app.post("/logout", (req, res) => {
+  res.cookie("token", "", {
+    expires: new Date(0), // Set expiration to past date
+    sameSite: "none",
+    secure: true,
+    httpOnly: true, // Helps prevent client-side access
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
 app.listen(3000, () => {
   console.log("Server said hello world");
 });

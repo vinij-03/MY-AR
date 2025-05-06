@@ -26,34 +26,19 @@ const models = [
 function Card({ onModelSelect }) {
     return (
         <div
-            style={{
-                display: "flex",
-                gap: "1rem",
-                padding: "1rem",
-                overflowX: "auto",
-                background: "#f5f5f5",
-            }}
+            className="flex flex-row gap-4 p-4 overflow-x-auto bg-slate-500"
         >
+            <div>
+                <h2 className="text-lg font-bold mb-2">Select a Model</h2>
+                <p className="text-sm text-gray-600">Click on a model to select it.</p>
+            </div>
             {models.map((model, index) => (
                 <div
                     key={index}
                     onClick={() => onModelSelect(model.url)}
-                    style={{
-                        border: "1px solid #ccc",
-                        borderRadius: "8px",
-                        padding: "1rem",
-                        cursor: "pointer",
-                        textAlign: "center",
-                        width: "120px",
-                    }}
+                    className="border border-gray-300 rounded-lg p-4 cursor-pointer text-center w-[120px]"
                 >
-                    <div
-                        style={{
-                            width: "100px",
-                            height: "100px",
-                            margin: "0 auto 0.5rem",
-                        }}
-                    >
+                    <div className="w-[100px] h-[100px] mx-auto mb-2">
                         <Thumbnail modelUrl={model.url} />
                     </div>
                     <div>{model.name}</div>
